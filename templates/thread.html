@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ thread.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            color: #444;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            margin-left: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px;
+        }
+
+        ul li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        button {
+            display: inline-block;
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        a {
+            display: inline-block;
+            margin: 20px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ thread.title }}</h1>
+    <p>{{ thread.content }}</p>
+    <h3>Komentar</h3>
+    <ul>
+        {% for comment in thread.comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/thread/{{ request.path.split('/')[-1] }}/comment" method="POST">
+        <textarea name="comment" placeholder="Tulis komentar"></textarea>
+        <button type="submit">Kirim</button>
+    </form>
+    <a href="/">Kembali ke Forum</a>
+</body>
+</html>

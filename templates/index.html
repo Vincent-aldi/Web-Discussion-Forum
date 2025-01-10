@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        body {
+            margin: 0;
+            font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+                "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: .88rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            text-align: left;
+            background-color: #eef1f3
+        }
+        
+        header {
+            background-color: #000066;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        header a {
+            color: #bfbfbf;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            text-decoration: none;
+            animation: colorchange 5s step-end;
+        }
+
+        @keyframes colorchange {
+            0% {color: white;}
+        }
+
+        main {
+            padding: 2rem;
+            font-size: 15px;
+        }
+
+        h1 {
+            color: #0000e6;
+            font-size: 44px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        a {
+            color: #0000e6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #000080;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #0000b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p>Welcome, {{ username }}! <a href="/logout">Logout</a></p>
+    </header>
+
+    <main>
+        <h1>DISCUSSION FORUM</h1>
+        <p class="lead">Welcome to our discussion forum. You can post your question or any related queries by simply clicking on the add post button. 
+            <br> Thankyou and Have a nice day!!</p>
+        <hr class="my-4">
+        <p>You can also reply to others post by clicking on their post and replying them.</p>
+        <a href="/create" class="button">Post New Thread</a>
+        <ul>
+            {% for thread in threads %}
+                <li>
+                    <a href="/thread/{{ loop.index0 }}">{{ thread.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
